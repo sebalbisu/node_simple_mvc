@@ -7,39 +7,39 @@ import App from "./lib/app";
 
 export let routes:IRoutes = 
 {
-	[GET+'/']: (req:IReq, resp:IResp, app:App) => {
+    [GET+'/']: (req:IReq, resp:IResp, app:App) => {
 
-		resp.end('plain text');
-	},
+        resp.end('plain text');
+    },
 
-	[GET+'/notfound']: (req:IReq, resp:IResp, app:App) => {
+    [GET+'/notfound']: (req:IReq, resp:IResp, app:App) => {
 
-		app.router.notFound(req, resp, app);
-	},
+        app.router.notFound(req, resp, app);
+    },
 
-	[GET+'/error']: (req:IReq, resp:IResp, app:App) => {
+    [GET+'/error']: (req:IReq, resp:IResp, app:App) => {
 
-		fs.readFile('not exists file', 'utf8', (err,data) =>{
-			if (err) {
-				app.router.error(req, resp, app); 
-				throw err; 
-			}
-		});
-	},
+        fs.readFile('not exists file', 'utf8', (err,data) =>{
+            if (err) {
+                app.router.error(req, resp, app); 
+                throw err; 
+            }
+        });
+    },
 
-	[GET+'/view']: (req:IReq, resp:IResp, app:App) => {
+    [GET+'/view']: (req:IReq, resp:IResp, app:App) => {
 
-		resp.end(app.view.render('layout.html', {
-			title: 'hola mundo',
-			content: app.view.render('view.html')
-		}));
-	},
+        resp.end(app.view.render('layout.html', {
+            title: 'hola mundo',
+            content: app.view.render('view.html')
+        }));
+    },
 
-	[GET+'/json']: (req:IReq, resp:IResp, app:App) => {
+    [GET+'/json']: (req:IReq, resp:IResp, app:App) => {
 
-		resp.setHeader('Content-Type', 'application/json');
-		resp.end(JSON.stringify({data: 123}));
-	}
+        resp.setHeader('Content-Type', 'application/json');
+        resp.end(JSON.stringify({data: 123}));
+    }
 };
 
 export default routes;

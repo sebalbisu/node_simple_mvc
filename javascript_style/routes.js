@@ -5,37 +5,37 @@ const POST = 'POST';
 
 module.exports = 
 {
-	[[GET,'/']]: (req, resp, app) => {
+    [[GET,'/']]: (req, resp, app) => {
 
-		resp.end('plain text');
-	},
+        resp.end('plain text');
+    },
 
-	[[GET,'/notfound']]: (req, resp, app) => {
+    [[GET,'/notfound']]: (req, resp, app) => {
 
-		app.router.notFound(req, resp);
-	},
+        app.router.notFound(req, resp);
+    },
 
-	[[GET,'/error']]: (req, resp, app) => {
+    [[GET,'/error']]: (req, resp, app) => {
 
-		fs.readFile('not exists file', 'utf8', (err,data) =>{
-			if (err) {
-				app.router.error(req, resp); 
-				throw err; 
-			}
-		});
-	},
+        fs.readFile('not exists file', 'utf8', (err,data) =>{
+            if (err) {
+                app.router.error(req, resp); 
+                throw err; 
+            }
+        });
+    },
 
-	[[GET,'/view']]: (req, resp, app) => {
+    [[GET,'/view']]: (req, resp, app) => {
 
-		resp.end(app.view.render('layout.html', {
-			title: 'hola mundo',
-			content: app.view.render('view.html')
-		}));
-	},
+        resp.end(app.view.render('layout.html', {
+            title: 'hola mundo',
+            content: app.view.render('view.html')
+        }));
+    },
 
-	[[GET,'/json']]: (req, resp, app) => {
+    [[GET,'/json']]: (req, resp, app) => {
 
-		resp.setHeader('Content-Type', 'application/json');
-		resp.end(JSON.stringify({data: 123}));
-	}
+        resp.setHeader('Content-Type', 'application/json');
+        resp.end(JSON.stringify({data: 123}));
+    }
 };
